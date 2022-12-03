@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ColorCard = ({ colorCode }) => {
+const ColorCard = ({ colorCode, styles }) => {
   return (
     <div
       style={{
+        ...styles,
         backgroundColor: colorCode,
         height: 30,
         display: 'flex',
@@ -21,6 +22,7 @@ const ColorCard = ({ colorCode }) => {
 
 ColorCard.propTypes = {
   colorCode: PropTypes.string,
+  styles: PropTypes.object,
 };
 
 export default ColorCard;

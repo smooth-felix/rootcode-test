@@ -45,7 +45,6 @@ const ListCardItem = ({ vehicleDetails }) => {
       <h5>{brand}</h5>
       <h5>{manufactureYear}</h5>
       <ColorCard colorCode={color} />
-      {/* <h5>{`Color: ${color}`}</h5> */}
       {bidPrice ? (
         <div>
           <Alert

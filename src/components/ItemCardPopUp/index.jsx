@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getModalVisibility, getSelectedVehicle } from 'pages/api/vehicle/vehicles.selector';
 import { clearSelectedVehicle } from 'pages/api/vehicle/vehicles.action';
+import ColorCard from 'components/colorCard';
 
 const ItemCardPopUp = () => {
   const isModalVisible = useSelector(getModalVisibility);
@@ -35,8 +36,8 @@ const ItemCardPopUp = () => {
           />
         }
       >
+        <ColorCard styles={{ width: 50 }} colorCode={color} />
         <h4>{`${price}  ${currency}`} </h4>
-        <h5>{`Color: ${color}`}</h5>
         <p>{description}</p>
       </Card>
     </Modal>
