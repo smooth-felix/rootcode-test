@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Layout, Menu, Badge, Select } from 'antd';
-import { ShoppingCartOutlined } from '@ant-design/icons';
-import axios from 'axios';
-import makeRequest from 'utils/request';
+import { Layout, Menu, Select } from 'antd';
 import CardList from 'components/CardList';
 import { vehicleBrands } from 'constants/globalConstants';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import ShoppingCartBadge from 'components/shoppingCartBadge';
+import ShoppingCart from 'components/Cart/ShoppingCart';
 import { fetchVehiclesData } from './api/vehicle/vehicles.action';
-import { getVehicles } from './api/vehicle/vehicles.selector';
-import { getCartItemNumber } from './api/cart/cart.selector';
 
 const { Header, Content, Footer } = Layout;
 
@@ -21,8 +18,6 @@ const HomePage = () => {
   const handleOnClick = () => {
     setOpenDrawer(true);
   };
-
-  const count = useSelector(getCartItemNumber);
 
   const getData = async () => {
     let queryParams = {};
@@ -45,16 +40,12 @@ const HomePage = () => {
       <Header className="nav-bar">
         <Menu style={{ float: 'right' }}>
           <Menu.Item onClick={handleOnClick}>
-            <Badge
-              className="cart-badge"
-              count={count}
-            >
-              <ShoppingCartOutlined className="cart-icon" />
-            </Badge>
+            <ShoppingCartBadge />
           </Menu.Item>
         </Menu>
       </Header>
       <Content style={{ padding: '0 50px' }}>
+        <ShoppingCart />
         <div className="site-layout-content">
           <Select style={{ width: 200, marginBottom: 30 }} size="middle" value={filterType} onChange={handleOnChange}>
             {vehicleBrands.map(item => <Select.Option key={item}>{item}</Select.Option>)}

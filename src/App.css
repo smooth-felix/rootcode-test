@@ -59,3 +59,18 @@
   width: 30px;
   color: #001529;
 }
+
+.ant-menu-item.ant-menu-item-selected.ant-menu-item-only-child {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding-bottom: 4px !important;
+  padding-top: 4px !important;
+}
+h5 {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+p {
+  font-size: 12px;
+}

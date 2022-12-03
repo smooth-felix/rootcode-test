@@ -15,6 +15,17 @@ export const getCartItemNumber = state => {
   return result && result.items.length;
 };
 
+export const getDrawerVisibility = state => {
+  const result = makeCartDataState(state);
+  return result && result.drawerVisible;
+};
+
+export const getTotalCartValue = state => {
+  const result = makeCartDataState(state);
+  const total = result.items.reduce((acc, obj) => { return acc + obj.bid; }, 0);
+  return total;
+};
+
 export const getCartItemPrice = itemId => state => {
   const result = makeCartDataState(state);
   const listItem = result?.items.find(item => item.id === itemId);
