@@ -1,5 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
-import { Layout, Menu, Select } from 'antd';
+import { Layout, Menu, Pagination, Select } from 'antd';
 import CardList from 'components/CardList';
 import { vehicleBrands } from 'constants/globalConstants';
 import { useDispatch } from 'react-redux';
@@ -11,24 +12,34 @@ const { Header, Content, Footer } = Layout;
 
 const HomePage = () => {
   const [filterType, setFilterType] = useState('All');
+  const [page, setPage] = useState(1);
 
   const dispatch = useDispatch();
 
   const getData = async () => {
-    let queryParams = {};
+    const queryParams = {};
     if (filterType !== 'All') {
-      queryParams = { 'details.brand': filterType };
+      queryParams['details.brand'] = filterType;
+    }
+    if (filterType === 'All') {
+      queryParams._page = page;
+      queryParams._limit = 4;
     }
     dispatch(fetchVehiclesData({ queryParams }));
   };
 
+  const handlePageChange = tmpPage => {
+    setPage(tmpPage);
+  };
+
   const handleOnChange = e => {
+    setPage(1);
     setFilterType(e);
   };
 
   useEffect(() => {
     getData();
-  }, [filterType]);
+  }, [filterType, page]);
 
   return (
     <Layout className="layout">
@@ -47,6 +58,7 @@ const HomePage = () => {
             {vehicleBrands.map(item => <Select.Option key={item}>{item}</Select.Option>)}
           </Select>
           <CardList />
+          {filterType === 'All' && <Pagination style={{ marginTop: 20 }} total={15} pageSize={4} current={page} onChange={handlePageChange} />}
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>Rootcode Practical Test - Rathindu 2022</Footer>

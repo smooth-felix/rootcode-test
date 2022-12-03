@@ -11,7 +11,6 @@ const BidSection = ({ vehicleDetails }) => {
   const bidPrice = useSelector(getCartItemPrice(vehicleDetails.id));
 
   const { price, currency } = vehicleDetails.details;
-  console.log(vehicleDetails);
 
   const dispatch = useDispatch();
 
