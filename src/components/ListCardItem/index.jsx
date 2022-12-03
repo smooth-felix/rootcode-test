@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedVehicle } from 'pages/api/vehicle/vehicles.action';
 import { setShoppingCart } from 'pages/api/cart/cart.action';
 import { getCartItemPrice } from 'pages/api/cart/cart.selector';
+import ColorCard from 'components/colorCard';
 
 const ListCardItem = ({ vehicleDetails }) => {
   const { price, currency, brand, manufactureYear, color, image } = vehicleDetails.details;
@@ -43,7 +44,8 @@ const ListCardItem = ({ vehicleDetails }) => {
       <h4>{`${price}  ${currency}`} </h4>
       <h5>{brand}</h5>
       <h5>{manufactureYear}</h5>
-      <h5>{`Color: ${color}`}</h5>
+      <ColorCard colorCode={color} />
+      {/* <h5>{`Color: ${color}`}</h5> */}
       {bidPrice ? (
         <div>
           <Alert
