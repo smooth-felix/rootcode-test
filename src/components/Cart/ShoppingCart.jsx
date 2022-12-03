@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable operator-linebreak */
 import { Divider, Drawer } from 'antd';
 import { setCartDrawerVisibility } from 'pages/api/cart/cart.action';
@@ -16,6 +17,7 @@ const ShoppingCart = () => {
   const handleOnClose = () => {
     dispatch(setCartDrawerVisibility(false));
   };
+
   return (
     <Drawer
       footer={<h3>{`Total Cart Value is ${totalCartValue} LKR`}</h3>}
@@ -26,10 +28,10 @@ const ShoppingCart = () => {
       {cartListing.length === 0 && <h3>No Items in the list yet</h3>}
       {cartListing.length !== 0 &&
         cartListing.map(item => (
-          <>
-            <CartItem key={item.id} itemDetails={item} />
-            <Divider />
-          </>
+          <div key={`div-${item.id}`}>
+            <CartItem key={`card-${item.id}`} itemDetails={item} />
+            <Divider key={`divider-${item.id}`} />
+          </div>
         ))}
     </Drawer>
   );

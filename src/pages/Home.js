@@ -10,14 +10,9 @@ import { fetchVehiclesData } from './api/vehicle/vehicles.action';
 const { Header, Content, Footer } = Layout;
 
 const HomePage = () => {
-  const [openDrawer, setOpenDrawer] = useState(false);
   const [filterType, setFilterType] = useState('All');
 
   const dispatch = useDispatch();
-
-  const handleOnClick = () => {
-    setOpenDrawer(true);
-  };
 
   const getData = async () => {
     let queryParams = {};
@@ -39,7 +34,7 @@ const HomePage = () => {
     <Layout className="layout">
       <Header className="nav-bar">
         <Menu style={{ float: 'right' }}>
-          <Menu.Item onClick={handleOnClick}>
+          <Menu.Item key="shoppingCart">
             <ShoppingCartBadge />
           </Menu.Item>
         </Menu>

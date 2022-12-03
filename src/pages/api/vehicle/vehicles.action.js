@@ -1,6 +1,7 @@
 import { CLEAR_SELECTED_VEHICLE, FETCH_VEHICLES, FETCH_VEHICLES_LOADING, SET_SELECTED_VEHICLE } from 'constants/actionTypes';
 import makeRequest from 'utils/request';
 
+// Set the selected vehicle for the popup
 export const setSelectedVehicle = vehicle => dispatch => {
   dispatch({
     type: SET_SELECTED_VEHICLE,
@@ -8,6 +9,7 @@ export const setSelectedVehicle = vehicle => dispatch => {
   });
 };
 
+// clear the selected Vehicle from the store
 export const clearSelectedVehicle = payload => dispatch => {
   dispatch({
     type: CLEAR_SELECTED_VEHICLE,

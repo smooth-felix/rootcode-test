@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React, { useState } from 'react';
-import { Alert, Button, Card, Form, Image, InputNumber } from 'antd';
+import { Alert, Button, Card, Image, InputNumber } from 'antd';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedVehicle } from 'pages/api/vehicle/vehicles.action';
@@ -76,7 +76,6 @@ const ListCardItem = ({ vehicleDetails }) => {
 
 ListCardItem.propTypes = {
   vehicleDetails: PropTypes.object,
-  onClick: PropTypes.func,
 };
 
 export default ListCardItem;

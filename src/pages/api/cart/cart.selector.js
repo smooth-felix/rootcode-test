@@ -15,31 +15,22 @@ export const getCartItemNumber = state => {
   return result && result.items.length;
 };
 
+// get the cart drawer visibility state
 export const getDrawerVisibility = state => {
   const result = makeCartDataState(state);
   return result && result.drawerVisible;
 };
 
+// get the total value of the cart (total bids)
 export const getTotalCartValue = state => {
   const result = makeCartDataState(state);
   const total = result.items.reduce((acc, obj) => { return acc + obj.bid; }, 0);
   return total;
 };
 
+// get the bid amount of a item
 export const getCartItemPrice = itemId => state => {
   const result = makeCartDataState(state);
   const listItem = result?.items.find(item => item.id === itemId);
   return listItem?.bid;
 };
-
-// // get Selected Vehicle
-// export const getSelectedVehicle = state => {
-//   const result = makeVehiclesDataState(state);
-//   return result && result.selectedVehicle.vehicle;
-// };
-
-// // get Modal Visibility
-// export const getModalVisibility = state => {
-//   const result = makeVehiclesDataState(state);
-//   return result && result.selectedVehicle.isModalVisible;
-// };
