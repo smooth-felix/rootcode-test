@@ -1,8 +1,8 @@
 import { Modal, Image, Card } from 'antd';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getModalVisibility, getSelectedVehicle } from 'pages/api/vehicles.selector';
-import { clearSelectedVehicle, fetchVehiclesData } from 'pages/api/vehicles.action';
+import { getModalVisibility, getSelectedVehicle } from 'pages/api/vehicle/vehicles.selector';
+import { clearSelectedVehicle, fetchVehiclesData } from 'pages/api/vehicle/vehicles.action';
 
 const ItemCardPopUp = () => {
   const isModalVisible = useSelector(getModalVisibility);
@@ -31,7 +31,7 @@ const ItemCardPopUp = () => {
         }
       >
         <h4>{`${price}  ${currency}`} </h4>
-        <h5>{color}</h5>
+        <h5>{`Color: ${color}`}</h5>
         <p>{description}</p>
       </Card>
     </Modal>

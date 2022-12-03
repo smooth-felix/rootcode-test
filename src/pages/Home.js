@@ -6,8 +6,9 @@ import makeRequest from 'utils/request';
 import CardList from 'components/CardList';
 import { vehicleBrands } from 'constants/globalConstants';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchVehiclesData } from './api/vehicles.action';
-import { getVehicles } from './api/vehicles.selector';
+import { fetchVehiclesData } from './api/vehicle/vehicles.action';
+import { getVehicles } from './api/vehicle/vehicles.selector';
+import { getCartItemNumber } from './api/cart/cart.selector';
 
 const { Header, Content, Footer } = Layout;
 
@@ -20,24 +21,15 @@ const HomePage = () => {
   const handleOnClick = () => {
     setOpenDrawer(true);
   };
-  // Put into an action disapatch and reducer setup
+
+  const count = useSelector(getCartItemNumber);
+
   const getData = async () => {
-    dispatch(fetchVehiclesData({ queryParams: { _page: 1, _limit: 5 } }));
-    // let queryParams;
-    // if (filterType === 'All') {
-    //   queryParams = '';
-    // }
-    // if (filterType !== 'All') {
-    //   queryParams = `?details.brand=${filterType}`;
-    // }
-
-    // const url = `${process.env.REACT_APP_BASE_URL}vehicles${queryParams}`;
-
-    // const onSuccess = res => {
-    //   console.log(res);
-    // };
-
-    // const response = await makeRequest({ method: 'GET', url, onSuccess });
+    let queryParams = {};
+    if (filterType !== 'All') {
+      queryParams = { 'details.brand': filterType };
+    }
+    dispatch(fetchVehiclesData({ queryParams }));
   };
 
   const handleOnChange = e => {
@@ -45,7 +37,6 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    // replace with a dispatch
     getData();
   }, [filterType]);
 
@@ -56,7 +47,7 @@ const HomePage = () => {
           <Menu.Item onClick={handleOnClick}>
             <Badge
               className="cart-badge"
-              count={2}
+              count={count}
             >
               <ShoppingCartOutlined className="cart-icon" />
             </Badge>
@@ -65,7 +56,7 @@ const HomePage = () => {
       </Header>
       <Content style={{ padding: '0 50px' }}>
         <div className="site-layout-content">
-          <Select style={{ width: 200 }} size="middle" value={filterType} onChange={handleOnChange}>
+          <Select style={{ width: 200, marginBottom: 30 }} size="middle" value={filterType} onChange={handleOnChange}>
             {vehicleBrands.map(item => <Select.Option key={item}>{item}</Select.Option>)}
           </Select>
           <CardList />

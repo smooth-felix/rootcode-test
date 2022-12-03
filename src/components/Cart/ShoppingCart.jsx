@@ -2,7 +2,7 @@ import { Drawer } from 'antd';
 import React from 'react';
 
 const ShoppingCart = () => {
-  return <Drawer>{/* Item render according to the list */}</Drawer>;
+  return <Drawer>sdks</Drawer>;
 };
 
 export default ShoppingCart;
