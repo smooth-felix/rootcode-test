@@ -47,6 +47,7 @@ const HomePage = () => {
       <Content style={{ padding: '0 50px' }}>
         <ShoppingCart />
         <div className="site-layout-content">
+          <span style={{ marginRight: 20 }}>Filter By Brand:</span>
           <Select style={{ width: 200, marginBottom: 30 }} size="middle" value={filterType} onChange={handleOnChange}>
             {vehicleBrands.map(item => <Select.Option key={item}>{item}</Select.Option>)}
           </Select>

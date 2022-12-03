@@ -16,7 +16,12 @@ const ItemCardPopUp = () => {
     dispatch(clearSelectedVehicle());
   };
   return (
-    <Modal open={isModalVisible} onCancel={handleClose} title={`${brand}  ${manufactureYear}`}>
+    <Modal
+      footer={null}
+      open={isModalVisible}
+      onCancel={handleClose}
+      title={`${brand}  ${manufactureYear}`}
+    >
       <Card
         cover={
           // eslint-disable-next-line react/jsx-wrap-multilines

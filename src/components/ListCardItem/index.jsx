@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-wrap-multilines */
-import React from 'react';
+import React, { useState } from 'react';
 import { Alert, Button, Card, Form, Image, InputNumber } from 'antd';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,29 +10,18 @@ import { getCartItemPrice } from 'pages/api/cart/cart.selector';
 const ListCardItem = ({ vehicleDetails }) => {
   const { price, currency, brand, manufactureYear, color, image } = vehicleDetails.details;
 
+  const [bid, setBid] = useState(null);
+
   const dispatch = useDispatch();
 
   const bidPrice = useSelector(getCartItemPrice(vehicleDetails.id));
 
-  const [form] = Form.useForm();
-
-  const validateMessages = {
-    number: {
-      // eslint-disable-next-line no-template-curly-in-string
-      range: '${label} must be larger than ${min}',
-    },
+  const handleOnChange = bidValue => {
+    if (bidValue > 0) setBid(bidValue);
   };
 
-  const handleOnFieldChange = async field => {};
-
-  const handleOnFinish = values => {
-    dispatch(setShoppingCart({ ...vehicleDetails, bid: values.bid }));
-    // form
-    //   .validateFields()
-    //   .then(value => {
-    //     dispatch(setShoppingCart(vehicleDetails));
-    //   })
-    //   .catch(error => error);
+  const handleOnFinish = () => {
+    dispatch(setShoppingCart({ ...vehicleDetails, bid }));
   };
 
   const handleOnClick = () => {
@@ -44,7 +33,7 @@ const ListCardItem = ({ vehicleDetails }) => {
       cover={
         <Image
           onClick={handleOnClick}
-          style={{ alignItems: 'center' }}
+          style={{ alignItems: 'center', cursor: 'pointer' }}
           preview={false}
           alt="example"
           src={image || 'https://via.placeholder.com/800x500.png?text=No+Image+Found'}
@@ -63,28 +52,23 @@ const ListCardItem = ({ vehicleDetails }) => {
           />
         </div>
       ) : (
-        <Form
-          form={form}
-          onFieldsChange={handleOnFieldChange}
-          onFinish={handleOnFinish}
-          validateMessages={validateMessages}
-        >
-          <Form.Item
-            name="bid"
-            label="Bid"
-            rules={[
-              { required: true, message: 'Please input your bid!' },
-              { type: 'number', min: currency },
-            ]}
-          >
-            <InputNumber addonAfter={currency} min={currency} />
-          </Form.Item>
-          <Form.Item>
-            <Button htmlType="submit" primary="true">
-              Add to Biddings
-            </Button>
-          </Form.Item>
-        </Form>
+        <div>
+          <InputNumber
+            style={{ marginBottom: 10 }}
+            onChange={handleOnChange}
+            value={bid}
+            addonAfter={currency}
+            min={currency}
+          />
+          {bid && bid < price && (
+            <p style={{ color: 'red' }}>
+              Please input a value greater than the price of the vehicle
+            </p>
+          )}
+          <Button onClick={handleOnFinish} primary="true" disabled={bid < price}>
+            Add to Biddings
+          </Button>
+        </div>
       )}
     </Card>
   );

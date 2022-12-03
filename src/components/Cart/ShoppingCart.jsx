@@ -1,4 +1,5 @@
-import { Drawer } from 'antd';
+/* eslint-disable operator-linebreak */
+import { Divider, Drawer } from 'antd';
 import { setCartDrawerVisibility } from 'pages/api/cart/cart.action';
 import { getCartItems, getDrawerVisibility, getTotalCartValue } from 'pages/api/cart/cart.selector';
 import React from 'react';
@@ -16,11 +17,20 @@ const ShoppingCart = () => {
     dispatch(setCartDrawerVisibility(false));
   };
   return (
-    <Drawer title="List of Biddings" open={drawerVisibility} onClose={handleOnClose}>
-      {cartListing.map(item => (
-        <CartItem key={item.id} itemDetails={item} />
-      ))}
-      <h2>{`Total Cart Value is ${totalCartValue} LKR`}</h2>
+    <Drawer
+      footer={<h3>{`Total Cart Value is ${totalCartValue} LKR`}</h3>}
+      title="List of Biddings"
+      open={drawerVisibility}
+      onClose={handleOnClose}
+    >
+      {cartListing.length === 0 && <h3>No Items in the list yet</h3>}
+      {cartListing.length !== 0 &&
+        cartListing.map(item => (
+          <>
+            <CartItem key={item.id} itemDetails={item} />
+            <Divider />
+          </>
+        ))}
     </Drawer>
   );
 };
