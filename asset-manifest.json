@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/rootcode-test/static/css/main.48ac17b7.css",
+    "main.js": "/rootcode-test/static/js/main.d25f14cb.js",
+    "static/js/787.952eb7e1.chunk.js": "/rootcode-test/static/js/787.952eb7e1.chunk.js",
+    "index.html": "/rootcode-test/index.html",
+    "main.48ac17b7.css.map": "/rootcode-test/static/css/main.48ac17b7.css.map",
+    "main.d25f14cb.js.map": "/rootcode-test/static/js/main.d25f14cb.js.map",
+    "787.952eb7e1.chunk.js.map": "/rootcode-test/static/js/787.952eb7e1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.48ac17b7.css",
+    "static/js/main.d25f14cb.js"
+  ]
+}
