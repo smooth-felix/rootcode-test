@@ -1,5 +1,18 @@
-import { FETCH_VEHICLES, FETCH_VEHICLES_LOADING } from 'constants/actionTypes';
+import { CLEAR_SELECTED_VEHICLE, FETCH_VEHICLES, FETCH_VEHICLES_LOADING, SET_SELECTED_VEHICLE } from 'constants/actionTypes';
 import makeRequest from 'utils/request';
+
+export const setSelectedVehicle = vehicle => dispatch => {
+  dispatch({
+    type: SET_SELECTED_VEHICLE,
+    payload: { vehicle, isModalVisible: true },
+  });
+};
+
+export const clearSelectedVehicle = payload => dispatch => {
+  dispatch({
+    type: CLEAR_SELECTED_VEHICLE,
+  });
+};
 
 // handle fetch loading state for course fetch request
 export const fetchingVehicles = (isLoading = true) => dispatch => {
@@ -31,7 +44,7 @@ export const fetchVehiclesData = payload => dispatch => {
     dispatch(setVehiclesFetch(response));
   };
 
-  const params = payload.queryParams;
+  const params = payload?.queryParams || {};
 
   const queryString = Object.keys(params).length !== 0 ? `?${Object.keys(params).map(key => `${key}=${params[key]}`).join('&')}` : '';
 

@@ -1,20 +1,25 @@
+/* eslint-disable operator-linebreak */
+import { Row, Col } from 'antd';
+import ItemCardPopUp from 'components/ItemCardPopUp';
 import ListCardItem from 'components/ListCardItem';
+import { getVehicles } from 'pages/api/vehicles.selector';
 import React from 'react';
-
-const sampleArray = [1, 2, 3];
-
-// TODO
-// Replace the div with a pagination component
-// List Card item should be inside of a col
-// Parent view should be in a row
-// OnChange Pagination dispatch fetch vehicle
+import { useSelector } from 'react-redux';
 
 const CardList = () => {
+  const vehicles = useSelector(getVehicles);
+
   return (
-    <div className="pagination">
-      {sampleArray.map(item => (
-        <ListCardItem key={item} />
-      ))}
+    <div className="list-container">
+      <ItemCardPopUp />
+      <Row gutter={[16, 16]} className="pagination">
+        {vehicles &&
+          vehicles.map(item => (
+            <Col key={item.id} span={6}>
+              <ListCardItem key={item.id} vehicleDetails={item.details} />
+            </Col>
+          ))}
+      </Row>
     </div>
   );
 };

@@ -22,7 +22,7 @@ const HomePage = () => {
   };
   // Put into an action disapatch and reducer setup
   const getData = async () => {
-    dispatch(fetchVehiclesData({ queryParams: { 'details.brand': 'Volkswagen' } }));
+    dispatch(fetchVehiclesData({ queryParams: { _page: 1, _limit: 5 } }));
     // let queryParams;
     // if (filterType === 'All') {
     //   queryParams = '';
