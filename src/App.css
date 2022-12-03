@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+.site-layout-content {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}
+
+.nav-bar {
+  height: 50px !important;
+}
+
+.ant-scroll-number.ant-badge-count {
+  min-width: 15px;
+  width: 15px;
+  height: 15px;
+  font-size: 10px;
+  line-height: 15px;
+}
+.cart-icon {
+  height: 30px;
+  width: 30px;
+  color: #001529;
+}
