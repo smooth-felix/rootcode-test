@@ -26,7 +26,7 @@ const ListCardItem = ({ vehicleDetails }) => {
   };
 
   const handleOnClick = () => {
-    dispatch(setSelectedVehicle(vehicleDetails.details));
+    dispatch(setSelectedVehicle(vehicleDetails));
   };
 
   return (
@@ -42,7 +42,7 @@ const ListCardItem = ({ vehicleDetails }) => {
       }
     >
       <h4>{`${price}  ${currency}`} </h4>
-      <h5>{brand}</h5>
+      <h5>{`${brand} ${vehicleDetails.name}`}</h5>
       <h5>{manufactureYear}</h5>
       <ColorCard colorCode={color} />
       {bidPrice ? (

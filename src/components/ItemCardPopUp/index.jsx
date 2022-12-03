@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 import { Modal, Image, Card } from 'antd';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +12,8 @@ const ItemCardPopUp = () => {
 
   const dispatch = useDispatch();
 
-  const { price, currency, brand, manufactureYear, color, image, description } = vehicleDetails;
+  const { price, currency, brand, manufactureYear, color, image, description, name } =
+    vehicleDetails;
 
   const handleClose = () => {
     dispatch(clearSelectedVehicle());
@@ -21,7 +23,7 @@ const ItemCardPopUp = () => {
       footer={null}
       open={isModalVisible}
       onCancel={handleClose}
-      title={`${brand}  ${manufactureYear}`}
+      title={`${brand} ${name} ${manufactureYear}`}
     >
       <Card
         cover={
