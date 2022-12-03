@@ -18,7 +18,7 @@ export const getVehiclesLoading = state => {
 // get Selected Vehicle
 export const getSelectedVehicle = state => {
   const result = makeVehiclesDataState(state);
-  return result && { name: result.selectedVehicle.vehicle.name, ...result.selectedVehicle.vehicle.details };
+  return result && result.selectedVehicle.vehicle;
 };
 
 // get Modal Visibility
